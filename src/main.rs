@@ -1,3 +1,12 @@
+mod interpreter;
+
+use interpreter::*;
+
 fn main() {
-    println!("Hello, world!");
+    let hello_world = "++++++++++[>+++++++>++++++++ \
+                       ++>+++>+<<<<-]>++.>+.+++++++ \
+                       ..+++.>++.<<+++++++++++++++. \
+                       >.+++.------.--------.>+.>.";
+    let mut machine = Machine::new(hello_world.chars().collect::<Vec<char>>());
+    machine.execute(false);
 }
