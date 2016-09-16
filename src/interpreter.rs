@@ -5,7 +5,7 @@ const TAPE_SIZE: usize = 30000;
 
 pub struct Machine {
     data_ptr: usize,
-    tape: [u8; TAPE_SIZE],
+    tape: [i8; TAPE_SIZE],
 
     instr_ptr: usize,
     instr_tape: Vec<char>,
@@ -53,13 +53,14 @@ impl Machine {
                     .bytes()
                     .next()
                     .and_then(|result| result.ok())
+                    .map(|byte| byte as i8)
                     .unwrap();
                 self.tape[self.data_ptr] = input;
             },
             '.' => {
                 let mut stdout = io::stdout();
                 let output = self.tape[self.data_ptr];
-                stdout.write(&[output]).ok();
+                stdout.write(&[output as u8]).ok();
             },
             '[' => {
                 if self.tape[self.data_ptr] == 0 {
