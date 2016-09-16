@@ -1,0 +1,6 @@
+[package]
+name = "rustfuck"
+version = "0.1.0"
+authors = ["alex"]
+
+[dependencies]
